@@ -23,13 +23,24 @@ export const Form = styled.form`
   }
 `;
 
-export const InputWrapper = styled.div`
+type InputWrapperProps = {
+  active: boolean;
+};
+
+export const InputWrapper = styled.div<InputWrapperProps>`
   display: flex;
   align-items: center;
-  border-radius: 25px;
-  background-color: #f2f2f2;
   padding: 0.5rem;
   position: relative;
+  border: 2px solid
+    ${({ theme, active }) => (active ? theme.primary : theme.border)};
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.background};
+  transition: all 0.3s ease;
+  &:focus-within {
+    box-shadow: 0px 0px 4px ${({ theme }) => theme.primary};
+    border: 2px solid ${({ theme }) => theme.primary};
+  }
 `;
 
 export const Input = styled.input`
@@ -56,4 +67,12 @@ export const SearchIconWrapper = styled.i`
   color: #666;
   font-size: 1.2rem;
   padding-right: 0.5rem;
+`;
+
+export const ClearIconWrapper = styled.i`
+  cursor: pointer;
+  position: absolute;
+  right: 2.5rem;
+  font-size: 1.6rem;
+  margin-right: 0.5rem;
 `;
