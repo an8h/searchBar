@@ -1,14 +1,16 @@
 import React from "react";
-import "./App.css";
+import SearchBar from "./components/SearchBar/SearchBar";
+// import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>React Typescript boilerplate</p>
-      </header>
-    </div>
-  );
+  return <SearchBar onSearch={() => {}} />;
 }
 
 export default App;
+
+// <div className="App">
+// <SearchBar onSearch={() => {}} />
+// {
+/* <SearchBar onSearch={handleSearch} /> */
+// }
+// </div>
