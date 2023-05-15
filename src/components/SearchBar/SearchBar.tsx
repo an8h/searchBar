@@ -107,6 +107,8 @@ function SearchBar({ onSearch }: SearchBarProps) {
         <InputWrapper active={!!searchTerm}>
           <Input
             ref={inputRef}
+            role="combobox"
+            aria-autocomplete="list"
             type="text"
             placeholder="Search"
             value={searchTerm}
@@ -118,17 +120,19 @@ function SearchBar({ onSearch }: SearchBarProps) {
         </InputWrapper>
       </Form>
       {searchResults && (
-        <Dropdown
-          items={searchResults.map((result) => result.title)}
-          isLoading={isLoading}
-          error={error}
-          searchTerm={debouncedSearchTerm}
-          onClickOption={(item: string) => {
-            setSearchTerm(item);
-            setSearchResults([]);
-            onSearch(item);
-          }}
-        />
+        <div role="listbox" aria-expanded={searchResults.length > 0}>
+          <Dropdown
+            items={searchResults.map((result) => result.title)}
+            isLoading={isLoading}
+            error={error}
+            searchTerm={debouncedSearchTerm}
+            onClickOption={(item: string) => {
+              setSearchTerm(item);
+              setSearchResults([]);
+              onSearch(item);
+            }}
+          />
+        </div>
       )}
     </SearchBarContainer>
   );
