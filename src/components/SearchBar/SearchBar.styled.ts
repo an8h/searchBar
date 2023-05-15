@@ -5,7 +5,6 @@ export const SearchBarContainer = styled.div`
   justify-content: center;
   padding: 0 20px;
   height: 100vh;
-  /* background-color: #067; */
   position: relative;
 `;
 
