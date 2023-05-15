@@ -63,7 +63,11 @@ function SearchBar({ onSearch }: SearchBarProps) {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(searchTerm);
+    const sanitizedSearchTerm = searchTerm
+      .trim()
+      .toLowerCase()
+      .replace(/[^\w\s]/gi, "");
+    onSearch(sanitizedSearchTerm);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
