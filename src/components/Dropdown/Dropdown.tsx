@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useRef } from "react";
 import { DropdownContainer, DropdownItem } from "./Dropdown.styled";
 import Message from "../Message/Message";
@@ -38,17 +39,24 @@ function Dropdown({
     };
   }, [dropdownRef, onClickOption]);
 
+  const ariaMessage = isLoading ? loadingMsg : error ? errorMsg : noResultsMsg;
+
   return (
-    <DropdownContainer ref={dropdownRef}>
-      {isLoading && <Message message={loadingMsg} />}
-      {error && <Message message={errorMsg} />}
-      {!isLoading && !error && items.length === 0 && searchTerm.length > 0 && (
-        <Message message={noResultsMsg} />
-      )}
+    <DropdownContainer ref={dropdownRef} aria-live="polite">
+      {!!(
+        isLoading ||
+        error ||
+        (items.length === 0 && searchTerm.length > 0)
+      ) && <Message message={ariaMessage} />}
       {!isLoading && !error && items.length > 0 && (
         <>
           {items.map((option) => (
-            <DropdownItem key={option} onClick={() => onClickOption(option)}>
+            <DropdownItem
+              key={option}
+              onClick={() => onClickOption(option)}
+              tabIndex={0}
+              role="option"
+            >
               {option}
             </DropdownItem>
           ))}

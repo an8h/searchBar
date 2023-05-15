@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const DropdownContainer = styled.div`
   position: absolute;
   top: calc(25% + 5px);
-  /* left: 0; */
-  /* width: 100%; */
   width: 70%;
   max-width: 50rem;
   max-height: 200px;
