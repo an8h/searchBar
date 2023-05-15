@@ -120,19 +120,17 @@ function SearchBar({ onSearch }: SearchBarProps) {
         </InputWrapper>
       </Form>
       {searchResults && (
-        <div role="listbox" aria-expanded={searchResults.length > 0}>
-          <Dropdown
-            items={searchResults.map((result) => result.title)}
-            isLoading={isLoading}
-            error={error}
-            searchTerm={debouncedSearchTerm}
-            onClickOption={(item: string) => {
-              setSearchTerm(item);
-              setSearchResults([]);
-              onSearch(item);
-            }}
-          />
-        </div>
+        <Dropdown
+          items={searchResults.map((result) => result.title)}
+          isLoading={isLoading}
+          error={error}
+          searchTerm={debouncedSearchTerm}
+          onClickOption={(item: string) => {
+            setSearchTerm(item);
+            setSearchResults([]);
+            onSearch(item);
+          }}
+        />
       )}
     </SearchBarContainer>
   );
